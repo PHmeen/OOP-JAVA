@@ -19,27 +19,32 @@ public class Semester {
     }
 
     public double calculateGPA() {
-        double totalGradePoint = 0;
-        int totalCredit = 0;
+    double totalGradePoint = 0;
+    int totalCredit = 0;
 
-        for (RegisterRecord rr : registeredSubjects) {
-            totalGradePoint += rr.getGradePoint() * rr.getSubject().getCredit();
-            totalCredit += rr.getSubject().getCredit();
+    for (RegisterRecord rr : registeredSubjects) {
+        if (rr.isWithdrawn()) {
+            continue; // ข้ามวิชาที่ถอน
         }
-
-        return (totalCredit > 0) ? (totalGradePoint / totalCredit) : 0.0;
+        totalGradePoint += rr.getGradePoint() * rr.getSubject().getCredit();
+        totalCredit += rr.getSubject().getCredit();
     }
+
+    return (totalCredit > 0) ? (totalGradePoint / totalCredit) : 0.0;
+}
+
 
     public void printSemesterInfo() {
         System.out.println("=== ปี " + academicYear + " เทอม " + termNumber + " ===");
         for (RegisterRecord rr : registeredSubjects) {
             rr.printInfo();
         }
-        System.out.println("GPA เทอมนี้: " + String.format("%.2f", calculateGPA()));
+        System.out.println("Semester " + termNumber + " GPA: " + String.format("%.2f", calculateGPA()));
         System.out.println("-----------------------------------");
     }
 
-    public ArrayList<RegisterRecord> getRegisteredSubjects() {
+    // ✅ เปลี่ยนชื่อเมธอดตรงนี้
+    public ArrayList<RegisterRecord> getRegisterRecords() {
         return registeredSubjects;
     }
 

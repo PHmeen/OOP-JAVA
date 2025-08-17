@@ -1,48 +1,21 @@
+import java.util.ArrayList; 
+
+// RegisterRecord.java
 public class RegisterRecord {
     private Subject subject;
     private double score;
     private String grade;
     private double gradePoint;
+    private boolean withdrawn = false;
 
-    // Constructor เดิม (ยังใช้ได้)
-    public RegisterRecord(Subject subject) {
-        this.subject = subject;
-    }
-
-    // Constructor ใหม่ที่รับคะแนน
     public RegisterRecord(Subject subject, double score) {
         this.subject = subject;
         this.score = score;
+        calculateGradeAndPoint();
     }
 
-    // Constructor ใหม่ที่รับคะแนน เกรด และเกรดพ้อยท์
-    public RegisterRecord(Subject subject, double score, String grade, double gradePoint) {
-        this.subject = subject;
-        this.score = score;
-        this.grade = grade;
-        this.gradePoint = gradePoint;
-    }
-
-    // Setters
-    public void setScore(double score) {
-        this.score = score;
-    }
-
-    public void setGrade(String grade) {
-        this.grade = grade;
-    }
-
-    public void setGradePoint(double gradePoint) {
-        this.gradePoint = gradePoint;
-    }
-
-    // Getters
     public Subject getSubject() {
         return subject;
-    }
-
-    public String getSubjectName() {
-        return subject.getSubjectName();
     }
 
     public double getScore() {
@@ -57,8 +30,27 @@ public class RegisterRecord {
         return gradePoint;
     }
 
-    // Method คำนวณเกรดและเกรดพ้อยท์จากคะแนน
+    public boolean isWithdrawn() {
+        return withdrawn;
+    }
+
+    public void setWithdrawn(boolean withdrawn) {
+        this.withdrawn = withdrawn;
+        if (withdrawn) {
+            this.grade = "W";
+            this.gradePoint = 0.0;
+            this.score = 0;
+        } else {
+            calculateGradeAndPoint(); // คำนวณใหม่ถ้ายกเลิกการถอน
+        }
+    }
+
     public void calculateGradeAndPoint() {
+        if (withdrawn) {
+            grade = "W";
+            gradePoint = 0.0;
+            return;
+        }
         if (score >= 80) {
             grade = "A";
             gradePoint = 4.0;
@@ -86,14 +78,20 @@ public class RegisterRecord {
         }
     }
 
-    // แสดงข้อมูล
     public void printInfo() {
         System.out.println("รายวิชา: " + subject.getSubjectName());
         System.out.println("Subject ID: " + subject.getSubjectId());
         System.out.println("Credit: " + subject.getCredit());
-        System.out.println("คะแนน: " + score);
-        System.out.println("เกรด: " + grade);
-        System.out.println("เกรดพ้อยท์: " + gradePoint);
+        System.out.println("อาจารย์ผู้สอน: " + subject.getLecturer().getFullname());
+
+        if (withdrawn) {
+            System.out.println("สถานะ: ถอน (W)");
+        } else {
+            System.out.println("คะแนน: " + score);
+            System.out.println("เกรด: " + grade);
+            System.out.println("เกรดพ้อยท์: " + gradePoint);
+        }
         System.out.println("---------------------------");
     }
 }
+
