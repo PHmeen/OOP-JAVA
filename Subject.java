@@ -6,8 +6,7 @@ public class Subject {
     private int semester;
     private int year;
     private Lecturer lecturer;
-
-    private int numberOfStudent = 0;  // นับจำนวนนักเรียนที่ลงทะเบียนรายวิชานี้
+    private int numberOfStudent;
 
     public Subject() {
         // Default constructor
