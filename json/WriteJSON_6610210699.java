@@ -35,8 +35,8 @@ public class WriteJSON_6610210699 {
 
         // สร้าง JSON Object นักเรียนคนที่ 2
         JSONObject obj2 = new JSONObject();
-        obj2.put("firstname", "Phurinut");
-        obj2.put("lastname", "Siritum");
+        obj2.put("firstname", "SIDTISAK");
+        obj2.put("lastname", "HANTHONGCHAI");
         obj2.put("student_id", "6610210720");
         obj2.put("age", 20);
 
