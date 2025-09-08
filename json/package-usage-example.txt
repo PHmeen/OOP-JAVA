@@ -1,0 +1,12 @@
+Create:
+	package myapp;
+	package myapp.p1;
+	package myapp.p1;
+
+Usage:
+import myapp.MyClass;
+import myapp.p1.hello;
+import java.io.*;
+
+
+
