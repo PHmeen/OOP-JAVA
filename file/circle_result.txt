@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 รัศมี: 50.00
 พื้นที่: 7853.98
 เส้นรอบวง: 314.16
+=======
+รัศมี: 25.00
+พื้นที่: 1963.50
+เส้นรอบวง: 157.08
+>>>>>>> 755f774 (Add exception files, move calcricle files to 'file' folder, and delete old GPA files)
