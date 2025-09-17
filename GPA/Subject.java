@@ -12,7 +12,8 @@ public class Subject {
         // Default constructor
     }
 
-    public Subject(String subjectId, String subjectName, int credit, Lecturer lecturer, int section, int semester, int year) {
+    public Subject(String subjectId, String subjectName, int credit, Lecturer lecturer, int section, int semester,
+            int year) {
         this.subjectId = subjectId;
         this.subjectName = subjectName;
         this.credit = credit;
@@ -77,7 +78,7 @@ public class Subject {
 
     // เพิ่มจำนวนเมื่อนักเรียนลงทะเบียน
     public void increaseStudentCount() {
-        numberOfStudent++;
+        numberOfStudent = numberOfStudent + 1;
     }
 
     public int getNumberOfStudent() {

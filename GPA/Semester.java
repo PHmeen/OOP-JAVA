@@ -19,20 +19,23 @@ public class Semester {
     }
 
     public double calculateGPA() {
-    double totalGradePoint = 0;
-    int totalCredit = 0;
+        double totalGradePoint = 0;
+        int totalCredit = 0;
 
-    for (RegisterRecord rr : registeredSubjects) {
-        if (rr.isWithdrawn()) {
-            continue; // ข้ามวิชาที่ถอน
+        for (RegisterRecord rr : registeredSubjects) {
+            if (rr.isWithdrawn()) {
+                continue; // ข้ามวิชาที่ถอน
+            }
+            totalGradePoint += rr.getGradePoint() * rr.getSubject().getCredit();
+            totalCredit += rr.getSubject().getCredit();
         }
-        totalGradePoint += rr.getGradePoint() * rr.getSubject().getCredit();
-        totalCredit += rr.getSubject().getCredit();
+
+        if (totalCredit > 0) {
+            return totalGradePoint / totalCredit;
+        } else {
+            return 0.0;
+        }
     }
-
-    return (totalCredit > 0) ? (totalGradePoint / totalCredit) : 0.0;
-}
-
 
     public void printSemesterInfo() {
         System.out.println("=== ปี " + academicYear + " เทอม " + termNumber + " ===");
